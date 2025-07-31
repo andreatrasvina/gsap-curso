@@ -22,6 +22,10 @@
 </head>
 <body>
     <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
@@ -33,15 +37,20 @@
         //fromTo -> combinacion de ambos, se define desde donde inicia y termina. se deben pasar dos objetos
         //set -> establece las propiedades de inmediato sin aplicar animacion
         
-        gsap.fromTo('.box', {
-            x: -100,
-            y: 10,
-        },
-        {
+        //por defecto esto devuleve un document.querySelectorAll -> selecciona todos los elementos que cumplen con el selector
+        gsap.to('.box:first-child', {
             x: 100,
             y: 10, 
             duration: 2  
-        })
+        });
+
+        gsap.to('.box:nth-child(2)', {
+            x: 200,
+            y: 10, 
+            duration: 2 
+        });
+
+
     </script>
 </body>
 </html>
