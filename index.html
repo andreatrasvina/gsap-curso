@@ -38,18 +38,31 @@
         //set -> establece las propiedades de inmediato sin aplicar animacion
         
         //por defecto esto devuleve un document.querySelectorAll -> selecciona todos los elementos que cumplen con el selector
-        gsap.to('.box:first-child', {
-            x: 100,
-            y: 10, 
-            duration: 2  
-        });
+        // gsap.to('.box', {
+        //     x: 100,
+        //     duration: 2,
+        // });
 
-        gsap.to('.box:nth-child(2)', {
-            x: 200,
-            y: 10, 
-            duration: 2 
-        });
+        // gsap.to('.box:nth-child(2)', {
+        //     x: 200,
+        //     y: 10, 
+        //     duration: 2 
+        // });
 
+        //ANIMACION TIPO ESCALERA MANUAL
+
+        //seleccionamos las cajas del dom
+        const boxes = document.querySelectorAll('.box');
+
+        //iteramos cada caja 
+        boxes.forEach( (box, i) => {
+            //a cada iteracion se le va agregando la animacion
+            gsap.to(box, { //en vez de pasar texto, pasamos el elemento box 
+                x: 100,
+                duration: 1,
+                delay: i * .5, 
+            })
+        });
 
     </script>
 </body>
