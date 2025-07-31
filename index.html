@@ -16,6 +16,7 @@
             height: 100px;
             border-radius: 12px;
             background-color: pink;
+            margin-bottom: 6px;
         }
     </style>
 </head>
@@ -26,9 +27,20 @@
 
     <script>
         //aminacion -> tween
-        gsap.to('.box', {
+
+        //to -> desde el estado actual hacia donde tiene que ir
+        //from -> desde donde tiene que iniciar la animacion para llegar al estado inicial que tiene
+        //fromTo -> combinacion de ambos, se define desde donde inicia y termina. se deben pasar dos objetos
+        //set -> establece las propiedades de inmediato sin aplicar animacion
+        
+        gsap.fromTo('.box', {
+            x: -100,
+            y: 10,
+        },
+        {
             x: 100,
-            y: 100,
+            y: 10, 
+            duration: 2  
         })
     </script>
 </body>
