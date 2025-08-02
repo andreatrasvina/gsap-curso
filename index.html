@@ -52,17 +52,40 @@
         //ANIMACION TIPO ESCALERA MANUAL
 
         //seleccionamos las cajas del dom
-        const boxes = document.querySelectorAll('.box');
+        // const boxes = document.querySelectorAll('.box');
 
-        //iteramos cada caja 
-        boxes.forEach( (box, i) => {
-            //a cada iteracion se le va agregando la animacion
-            gsap.to(box, { //en vez de pasar texto, pasamos el elemento box 
-                x: () => window.innerWidth / 2, //px por defecto, se pueden enviar otras medidas entre comillas "100vh" y HASTA FUNCIONES !!
-                duration: 1,
-                delay: i * .5, 
-            })
-        });
+        // //iteramos cada caja 
+        // boxes.forEach( (box, i) => {
+        //     //a cada iteracion se le va agregando la animacion
+        //     gsap.to(box, { //en vez de pasar texto, pasamos el elemento box 
+        //         x: () => window.innerWidth / 2, //px por defecto, se pueden enviar otras medidas entre comillas "100vh" y HASTA FUNCIONES !!
+        //         duration: 1,
+        //         delay: i * .5, 
+        //     })
+        // });
+
+        gsap.to('.box', { //todos los que tengan la clase box
+            x: 200, //px por defecto, se pueden enviar otras medidas entre comillas "100vh" y HASTA FUNCIONES !!
+            duration: 1,
+            rotate: 360, //grados c
+            scale: .5, //transformacion del tamaño
+            //repeat: -1, //-1 es inifinito, otro num es la cant. de repeticiones
+            //yoyo: true, //hace que regrese
+
+            //hasta que termine TODO el escalonado se activa la animacion YOYO
+            //stagger: .2, //velocidad del escalonado
+
+            //PERO 
+            //no necesariamente tiene que esperar a que termine todo el escalonado,
+            //se puede animar cada caja
+            stagger: {
+                each: .2, //velocidad del escalonado
+                repeat: -1, //inifinito
+                yoyo: true,
+            }
+
+        })
+
 
     </script>
 </body>
