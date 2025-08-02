@@ -18,14 +18,36 @@
             background-color: pink;
             margin-bottom: 6px;
         }
+
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            
+            img{
+                aspect-ratio: 5/8;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- <div class="box"></div>
     <div class="box"></div>
     <div class="box"></div>
     <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
+    <div class="box"></div> -->
+
+    <div class="grid">
+        <img src="https://i.pinimg.com/564x/63/1b/0f/631b0ffb4742f20387be121bcc67801b.jpg">
+        <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/08/iron-man-216.jpg">
+        <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/02/portada-82-silver-surfer.jpg">
+        <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/02/portada-90-batman-648.jpg">
+        <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/02/portada-86-x-men-190.jpg">
+        <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/02/portada-88-x-men.jpg">
+        <img src="https://f.rpp-noticias.io/2020/10/15/10103421jpg.jpg">
+        <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/08/what-if-43.jpg">
+        <img src="https://i.pinimg.com/564x/38/00/2f/38002f67df2a00194a03661795a2e015.jpg">
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
@@ -84,6 +106,19 @@
                 yoyo: true,
             }
 
+        })
+
+        gsap.to('.grid img', {
+            duration: 2,
+            scale: .9,
+            opacity: 0,
+            stagger: {
+                each: .5,
+                repeat: -1,
+                yoyo: true,
+                grid: 'auto', //actua sabiendo que estan en una malla
+                from: 'center', //desde donde inicia la animacion: start, center, edges, end, random
+            }
         })
 
 
