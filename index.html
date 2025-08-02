@@ -25,6 +25,10 @@
             &.blue{
                 background-color: lightskyblue;
             }
+
+            &.green{
+                background-color: lightgreen;
+            }
         }
 
         .grid{
@@ -59,6 +63,7 @@
 
     <div class="box purple"></div>
     <div class="box blue"></div>
+    <div class="box green"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
@@ -138,30 +143,70 @@
         //es lo que le da vida al movimiento
 
         //separar los elementos con la misma clase
-        gsap.to('.box.purple',{
-            x: 200,
-            duration: 2,
-            rotate: 360,
-            scale: .75,
-            repeat: -1, 
-            yoyo: true,
-            //ease -> cambia la sensacion del movimiento
-            // ease: expo, bounce, back, steps, elastic
-            // in -> inicio, entrada. out -> al terminar, salida
-            ease: 'expoScale' 
-        });
+        // gsap.to('.box.purple',{
+        //     x: 200,
+        //     duration: 2,
+        //     rotate: 360,
+        //     scale: .75,
+        //     repeat: -1, 
+        //     yoyo: true,
+        //     //ease -> cambia la sensacion del movimiento
+        //     // ease: expo, bounce, back, steps, elastic
+        //     // in -> inicio, entrada. out -> al terminar, salida
+        //     ease: 'expoScale' 
+        // });
 
+        
         //aunque tengan la misma animacion, el suavizado los hace ver completamente diferentes
-        gsap.to('.box.blue',{
-            x: 200,
-            duration: 2,
-            rotate: 360,
-            scale: .75,
-            repeat: -1, 
-            yoyo: true,
+        // gsap.to('.box.blue',{
+        //     x: 200,
+        //     duration: 2,
+        //     rotate: 360,
+        //     scale: .75,
+        //     repeat: -1, 
+        //     yoyo: true,
+            
+        // });
 
+        //LINEA DEL TIEMPO PARA CONTROLAR LAS ANIMACIONES
+
+        //SIN TIMELINE -> usando delay manual en cada caja
+        // gsap.to('.box.purple',{
+        //     duration: 2,
+        //     x: 200,
+        // });
+
+        // gsap.to('.box.blue',{
+        //     duration: 1,
+        //     y: -80,
+        //     delay: 2,
+        // });
+        
+        // gsap.to('.box.green',{
+        //     x: 100,
+        //     y: -160,
+        //     delay: 3,
+        // });
+
+        //CON TIMELINE
+        const tl = gsap.timeline({
+            defaults: {
+                duration: 2,
+            }
         });
 
+        tl
+            .to('.box.purple',{
+                x: 200,
+            })
+            .to('.box.blue',{
+                y: -80,
+                duration: 1, //el valor por defecto se puede sobreescribir
+            })
+            .to('.box.green',{
+                x: 100,
+                y: -160,
+            })
 
     </script>
 </body>
