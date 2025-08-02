@@ -58,7 +58,7 @@
         boxes.forEach( (box, i) => {
             //a cada iteracion se le va agregando la animacion
             gsap.to(box, { //en vez de pasar texto, pasamos el elemento box 
-                x: 100,
+                x: () => window.innerWidth / 2, //px por defecto, se pueden enviar otras medidas entre comillas "100vh" y HASTA FUNCIONES !!
                 duration: 1,
                 delay: i * .5, 
             })
