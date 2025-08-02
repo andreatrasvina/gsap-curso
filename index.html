@@ -12,11 +12,19 @@
         }
 
         .box{
-            width: 100px;
-            height: 100px;
+            width: 75px;
+            height: 75px;
             border-radius: 12px;
             background-color: pink;
             margin-bottom: 6px;
+
+            &.purple{
+                background-color: rgb(200, 200, 255);
+            }
+
+            &.blue{
+                background-color: lightskyblue;
+            }
         }
 
         .grid{
@@ -37,7 +45,7 @@
     <div class="box"></div>
     <div class="box"></div> -->
 
-    <div class="grid">
+    <!-- <div class="grid">
         <img src="https://i.pinimg.com/564x/63/1b/0f/631b0ffb4742f20387be121bcc67801b.jpg">
         <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/08/iron-man-216.jpg">
         <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/02/portada-82-silver-surfer.jpg">
@@ -47,7 +55,10 @@
         <img src="https://f.rpp-noticias.io/2020/10/15/10103421jpg.jpg">
         <img src="https://hablandodecomics.wordpress.com/wp-content/uploads/2012/08/what-if-43.jpg">
         <img src="https://i.pinimg.com/564x/38/00/2f/38002f67df2a00194a03661795a2e015.jpg">
-    </div>
+    </div> -->
+
+    <div class="box purple"></div>
+    <div class="box blue"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
@@ -86,7 +97,7 @@
         //     })
         // });
 
-        gsap.to('.box', { //todos los que tengan la clase box
+        gsap.to('.boxx', { //todos los que tengan la clase box
             x: 200, //px por defecto, se pueden enviar otras medidas entre comillas "100vh" y HASTA FUNCIONES !!
             duration: 1,
             rotate: 360, //grados c
@@ -120,6 +131,36 @@
                 from: 'center', //desde donde inicia la animacion: start, center, edges, end, random
             }
         })
+
+        //SUAVIZADOS -> EASING
+        //https://gsap.com/docs/v3/Eases/
+        //forma en que una animación acelera o desacelera
+        //es lo que le da vida al movimiento
+
+        //separar los elementos con la misma clase
+        gsap.to('.box.purple',{
+            x: 200,
+            duration: 2,
+            rotate: 360,
+            scale: .75,
+            repeat: -1, 
+            yoyo: true,
+            //ease -> cambia la sensacion del movimiento
+            // ease: expo, bounce, back, steps, elastic
+            // in -> inicio, entrada. out -> al terminar, salida
+            ease: 'expoScale' 
+        });
+
+        //aunque tengan la misma animacion, el suavizado los hace ver completamente diferentes
+        gsap.to('.box.blue',{
+            x: 200,
+            duration: 2,
+            rotate: 360,
+            scale: .75,
+            repeat: -1, 
+            yoyo: true,
+
+        });
 
 
     </script>
