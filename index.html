@@ -40,6 +40,10 @@
                 width: 100%;
             }
         }
+
+        #log{
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,6 +68,16 @@
     <div class="box purple"></div>
     <div class="box blue"></div>
     <div class="box green"></div>
+
+    <footer>
+        <button id="play">Reproducir</button>
+        <button id="pause">Pausa</button>
+        <button id="resume">Resumir</button>
+        <button id="reverse">Revertir</button>
+        <button id="restart">Reiniciar</button>
+        <button id="turbo">Soy Turbo</button>
+    </footer>
+    <small id="log"></small>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 
@@ -192,6 +206,16 @@
         const tl = gsap.timeline({
             defaults: {
                 duration: 2,
+            },
+            //se pueden controlar eventos con callbacks
+            onComplete: () => {
+                window.log.innerHTML += "[event] complete <br>";
+            },
+            onStart: () => {
+                window.log.innerHTML += "[event] ha comenzado <br>";
+            },
+            onRepeat: () => {
+                window.log.innerHTML += "[event] me estoy repitiendo <br>";
             }
         });
 
@@ -204,12 +228,43 @@
             .to('.box.blue',{
                 y: -80,
                 //duration: 1, //el valor por defecto se puede sobreescribir
-            }, "<") //parametro de posicion, se sincroniza la animacion en la linea del tiempo
+            }, 2) //parametro de posicion, se sincroniza la animacion en la linea del tiempo
             .to('.box.green',{
                 x: 100,
                 y: -160,
-            }, "=+1") //parametro de posicion, espera un tiempo despues de la animacion
+            }, 3) //parametro de posicion, espera un tiempo despues de la animacion
 
+
+            //METODOS DE CONTROL CON CALLBACKS
+            window.play.onclick = () => {
+                tl.play()
+                window.log.innerHTML += "play <br>"
+            }
+
+            window.pause.onclick = () => {
+                tl.pause();
+                window.log.innerHTML += "pause <br>"
+            }
+
+            window.resume.onclick = () => {
+                tl.resume();
+                window.log.innerHTML += "resume <br>"
+            }
+
+            window.reverse.onclick = () => {
+                tl.reverse();
+                window.log.innerHTML += "reverse <br>"
+            }
+
+            window.restart.onclick = () => {
+                tl.restart();
+                window.log.innerHTML += "restart <br>"
+            }
+
+            window.turbo.onclick = () => {
+                tl.timeScale(10); //escala en la que aumenta el movimiento
+                window.log.innerHTML += "Y con esta mano me <br>"
+            }
     </script>
 </body>
 </html>
