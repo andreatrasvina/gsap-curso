@@ -195,18 +195,20 @@
             }
         });
 
+        //sincronizacion y ajuste del tiempo de animacion
+        //parametros de posicion en la linea del tiempo
         tl
             .to('.box.purple',{
                 x: 200,
             })
             .to('.box.blue',{
                 y: -80,
-                duration: 1, //el valor por defecto se puede sobreescribir
-            })
+                //duration: 1, //el valor por defecto se puede sobreescribir
+            }, "<") //parametro de posicion, se sincroniza la animacion en la linea del tiempo
             .to('.box.green',{
                 x: 100,
                 y: -160,
-            })
+            }, "=+1") //parametro de posicion, espera un tiempo despues de la animacion
 
     </script>
 </body>
