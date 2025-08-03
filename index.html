@@ -8,7 +8,7 @@
         body{
             background-color: #222;
             font-family: system-ui;
-
+            height: 5000px;
         }
 
         .box{
@@ -45,11 +45,24 @@
             color: white;
         }
 
-        h1{
+        .text{
             color: white;
             text-wrap: balance;
             text-align: center;
 
+        }
+
+        .title{
+            color: white;
+            text-wrap: balance;
+            text-align: center;
+            font-size: 15vw;
+            width: 100%;
+
+            position: fixed;
+            left: 50%;
+            top: 35%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -86,10 +99,12 @@
     </footer>
     <small id="log"></small> -->
 
-    <h1 class="text">El código es poesía, pero también puede ser magia visual con GSAP</h1>
+    <!-- <h1 class="text">El código es poesía, pero también puede ser magia visual con GSAP</h1> -->
+     <h1 class="title">AirPods Pro</h1>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 
     <script>
 
@@ -98,6 +113,18 @@
         //import SplitText from "gsap/SplitText"
         //usando cdn:
         gsap.registerPlugin(SplitText);
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to('.title', {
+            scale: 1.5,
+            autoAlpha: 0,
+            scrollTrigger: {
+                scrub: 2, //vincula el progreso de la animacion con el scroll total de la pagina
+                start: "center center", //tambien se puede poner numeros por px
+                end: 3500,
+                markers: true, //guia visual para ver donde comienza y termina, esto no se lleva a produccion xdxd
+            }
+        })
 
         //crear una estancia de splitText del elemento h1 
         const splitText = new SplitText(".text", {
@@ -106,9 +133,9 @@
         });
 
         //animar las palabras
-        gsap.from(splitText.words, {
+        gsap.from(splitText.chars, {
             duration: 1,
-            y: 10, //estado inicial, pos y10 al final pos y0
+            y: 25, //estado inicial, pos y10 al final pos y0
             //cada palabra es un unico elemento
             stagger: .1, //segundos entre animacion de cada elemento
             //podemos usar opacity o autoAlpha, este ultimo tambien modifica la visibilidad del elemento
