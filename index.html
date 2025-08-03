@@ -44,6 +44,13 @@
         #log{
             color: white;
         }
+
+        h1{
+            color: white;
+            text-wrap: balance;
+            text-align: center;
+
+        }
     </style>
 </head>
 <body>
@@ -65,7 +72,7 @@
         <img src="https://i.pinimg.com/564x/38/00/2f/38002f67df2a00194a03661795a2e015.jpg">
     </div> -->
 
-    <div class="box purple"></div>
+    <!-- <div class="box purple"></div>
     <div class="box blue"></div>
     <div class="box green"></div>
 
@@ -77,11 +84,38 @@
         <button id="restart">Reiniciar</button>
         <button id="turbo">Soy Turbo</button>
     </footer>
-    <small id="log"></small>
+    <small id="log"></small> -->
+
+    <h1 class="text">El código es poesía, pero también puede ser magia visual con GSAP</h1>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 
     <script>
+
+        //simepre al usar un plugin debemos registrarlo
+        //si es con el import:
+        //import SplitText from "gsap/SplitText"
+        //usando cdn:
+        gsap.registerPlugin(SplitText);
+
+        //crear una estancia de splitText del elemento h1 
+        const splitText = new SplitText(".text", {
+            //le pasamos las opciones para separar el texto
+            type: "words, chars, lines",
+        });
+
+        //animar las palabras
+        gsap.from(splitText.words, {
+            duration: 1,
+            y: 10, //estado inicial, pos y10 al final pos y0
+            //cada palabra es un unico elemento
+            stagger: .1, //segundos entre animacion de cada elemento
+            //podemos usar opacity o autoAlpha, este ultimo tambien modifica la visibilidad del elemento
+            autoAlpha: 0,
+            filter: "blur(10px)", //estado inicial, inicia con 10 de blur y al final sin
+        })
+
         //aminacion -> tween
 
         //to -> desde el estado actual hacia donde tiene que ir
