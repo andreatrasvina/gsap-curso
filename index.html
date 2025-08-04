@@ -172,7 +172,7 @@
         //animacion del objeto airpod
         gsap.to(airpods, {
             frame: TOTAL_FRAMES - 1, //indica el numero de frame en el que va
-            ease: "none",
+            //ease: "none",
             snap: "frame", //frame a frame, no saltos, hace que avancen los frames
             scrollTrigger: {
                 scrub: .5,
@@ -180,9 +180,8 @@
             //debemos indicar que debe actualizar el frame, bueno si se actualiza, pero no se vuelve a renderizar
             //vuelve a renderizar:
             onUpdate: render,
-
         });
-
+        
         //renderizar
         images[0].onload = () => render();
 
@@ -191,6 +190,23 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height); //limpiamos el canvas
             ctx.drawImage(images[airpods.frame], 0, 0); //dibuja el array de imagenes[numero de frame] en la posicion 0 0
         }
+
+        //ejercicio: animacion del incio
+        gsap.from('.title', {
+            duration: .8,
+            scale: .8,
+            opacity: 0,
+            // filter: "blur(3px)",
+            ease: "back.in",
+        });
+
+        //obj js
+        gsap.from(canvas, {
+            duration: .8,
+            scale: .8,
+            opacity: 0,
+            ease: "back.in",
+        });
 
         //crear una estancia de splitText del elemento h1 
         const splitText = new SplitText(".text", {
